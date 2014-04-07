@@ -21,6 +21,10 @@ Piper: A bitcoin hardware paper wallet printer and so much more.  Check out pipe
 
     
     
-    PPC NMC FTC DOGE XPM added by pembo210
+PPC NMC FTC DOGE XPM added by pembo210
 
-    Encryption options untested. Please test on your own.
+Final product - https://i.imgur.com/X4PpUS6.jpg
+
+Select coin options on Settings tab.
+
+Encryption options untested. Please test on your own.
