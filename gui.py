@@ -546,11 +546,16 @@ class Tab4(tk.Frame):
 		
 		coinTypeFrame = tk.Frame(self)
 
-		tk.Label(coinTypeFrame, text="Coin type:").pack(side=tk.LEFT, padx=10, pady=10)
+		tk.Label(coinTypeFrame, text="Coin:").pack(side=tk.LEFT, padx=5, pady=10)
 		self.coinType = tk.StringVar()
 
-		tk.Radiobutton(coinTypeFrame, text="Bitcoin", variable=self.coinType, value="bitcoin").pack(side=tk.LEFT, padx=5, pady=10)
-		tk.Radiobutton(coinTypeFrame, text="Litecoin", variable=self.coinType, value="litecoin").pack(side=tk.LEFT, padx=5, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Bitcoin", variable=self.coinType, value="bitcoin").pack(side=tk.LEFT, padx=3, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Litecoin", variable=self.coinType, value="litecoin").pack(side=tk.LEFT, padx=3, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Peercoin", variable=self.coinType, value="peercoin").pack(side=tk.LEFT, padx=3, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Namecoin", variable=self.coinType, value="namecoin").pack(side=tk.LEFT, padx=3, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Dogecoin", variable=self.coinType, value="dogecoin").pack(side=tk.LEFT, padx=3, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Primecoin", variable=self.coinType, value="primecoin").pack(side=tk.LEFT, padx=3, pady=10)
+		tk.Radiobutton(coinTypeFrame, text="Feathercoin", variable=self.coinType, value="feathercoin").pack(side=tk.LEFT, padx=3, pady=10)
 
 		coinTypeFrame.pack()
 
@@ -560,7 +565,8 @@ class Tab4(tk.Frame):
 		tk.Entry(addressPrefixFrame, textvariable=self.addrPrefix).pack(side=tk.LEFT, padx=10, pady=10)
 		addressPrefixFrame.pack()
 		
-		tk.Label(self, text="Address prefix is 1 for bitcoin and L for litecoin or key generation will fail.").pack(padx=10)
+		tk.Label(self, text="Address prefix - 1 for bitcoin - L for litecoin - D for Doge - 6 for Feathercoin.").pack(padx=10)
+		tk.Label(self, text="Address prefix - P for Peercoin - M for Namecoin - A for Primecoin   ").pack(padx=10)
 		tk.Label(self, text="We do not recommend a prefix longer than 3 characters.  ").pack(padx=10)
 		tk.Label(self, text="A prefix just 3 characters long can take up to 30 seconds to generate (for example 1CC).").pack(padx=10)
 		tk.Label(self, text="A prefix 4 characters long can take up to 10 minutes to generate (for example 1cat).").pack(padx=10)
@@ -607,6 +613,26 @@ class Tab4(tk.Frame):
 		if(self.coinType.get() == "litecoin" and self.encType.get() == "bip0038"):
 			self.showMessage("Error!!","BIP0038 is not compatible with litecoin.  Settings not saved.") 
 			self.encType.set("aes")	
+			
+		elif(self.coinType.get() == "dogecoin" and self.encType.get() == "bip0038"):
+			self.showMessage("Error!!","BIP0038 is not compatible with dogecoin.  Settings not saved.") 
+			self.encType.set("aes")	
+
+		elif(self.coinType.get() == "peercoin" and self.encType.get() == "bip0038"):
+			self.showMessage("Error!!","BIP0038 is not compatible with peercoin.  Settings not saved.") 
+			self.encType.set("aes")	
+
+		elif(self.coinType.get() == "namecoin" and self.encType.get() == "bip0038"):
+			self.showMessage("Error!!","BIP0038 is not compatible with namecoin.  Settings not saved.") 
+			self.encType.set("aes")	
+
+		elif(self.coinType.get() == "primecoin" and self.encType.get() == "bip0038"):
+			self.showMessage("Error!!","BIP0038 is not compatible with primecoin.  Settings not saved.") 
+			self.encType.set("aes")	
+
+		elif(self.coinType.get() == "feathercoin" and self.encType.get() == "bip0038"):
+			self.showMessage("Error!!","BIP0038 is not compatible with feathercoin.  Settings not saved.") 
+			self.encType.set("aes")	
 			return
 
 
@@ -619,6 +645,32 @@ class Tab4(tk.Frame):
 				return
 			process = Popen(["./vanitygen-litecoin", "-q", "-n", "-L", "-t","1","-s", "/dev/random", self.addrPrefix.get()], stderr=PIPE)
 
+		elif(self.coinType.get() == "dogecoin"):
+			if(len(self.addrPrefix.get()) == 0 or self.addrPrefix.get()[0] != "D"):
+				self.showMessage("Error!!","Invalid address prefix.  Dogecoin must begin with D.") 
+				return
+			process = Popen(["./vanitygen-litecoin", "-q", "-n", "-X30", "-t","1","-s", "/dev/random", self.addrPrefix.get()], stderr=PIPE)
+		elif(self.coinType.get() == "peercoin"):
+			if(len(self.addrPrefix.get()) == 0 or self.addrPrefix.get()[0] != "P"):
+				self.showMessage("Error!!","Invalid address prefix.  Peercoin must begin with P.") 
+				return
+			process = Popen(["./vanitygen-litecoin", "-q", "-n", "-X55", "-t","1","-s", "/dev/random", self.addrPrefix.get()], stderr=PIPE)
+		elif(self.coinType.get() == "namecoin"):
+			if(len(self.addrPrefix.get()) == 0 or self.addrPrefix.get()[0] != "M"):
+				self.showMessage("Error!!","Invalid address prefix.  Namecoin must begin with M.") 
+				return
+			process = Popen(["./vanitygen-litecoin", "-q", "-n", "-X52", "-t","1","-s", "/dev/random", self.addrPrefix.get()], stderr=PIPE)
+		elif(self.coinType.get() == "primecoin"):
+			if(len(self.addrPrefix.get()) == 0 or self.addrPrefix.get()[0] != "A"):
+				self.showMessage("Error!!","Invalid address prefix.  Primecoin must begin with A.") 
+				return
+			process = Popen(["./vanitygen-litecoin", "-q", "-n", "-X23", "-t","1","-s", "/dev/random", self.addrPrefix.get()], stderr=PIPE)
+		elif(self.coinType.get() == "feathercoin"):
+			if(len(self.addrPrefix.get()) == 0 or self.addrPrefix.get()[0] != "6"):
+				self.showMessage("Error!!","Invalid address prefix.  Feathercoin must begin with 6.") 
+				return
+			process = Popen(["./vanitygen-litecoin", "-q", "-n", "-X14", "-t","1","-s", "/dev/random", self.addrPrefix.get()], stderr=PIPE)
+						
 		else:
 			if(len(self.addrPrefix.get()) == 0 or self.addrPrefix.get()[0] != "1"):
 				self.showMessage("Error!!","Invalid address prefix.  Bitcoin addresses must begin with 1.") 

@@ -63,6 +63,16 @@ def print_keypair(pubkey, privkey, leftBorderText):
 		
 	if(coinType == "litecoin"):
 		finalImgName="ltc-wallet"
+	elif(coinType == "dogecoin"):
+		finalImgName="doge-wallet"
+	elif(coinType == "peercoin"):
+		finalImgName="peercoin-wallet"
+	elif(coinType == "namecoin"):
+		finalImgName="namecoin-wallet"
+	elif(coinType == "primecoin"):
+		finalImgName="primecoin-wallet"
+	elif(coinType == "feathercoin"):
+		finalImgName="feathercoin-wallet"
 	else:
 		finalImgName="btc-wallet"
 
@@ -305,13 +315,13 @@ def genAndPrintKeys(remPubKey, remPrivKey, numCopies, password):
 				con.commit()
 				con.close()
 			
-		
+		#for some reason my PI no longer has access to this file
 		#store it in a flat file on the sd card
-		f = open("/boot/keys.txt", 'a+')
-		strToWrite = "Serial Number: " + snum + strToWrite
-		f.write(strToWrite);
-		f.write("\n---------------------------------\n")
-		f.close()
+		#f = open("/boot/keys.txt", 'a+')
+		#strToWrite = "Serial Number: " + snum + strToWrite
+		#f.write(strToWrite);
+		#f.write("\n---------------------------------\n")
+		#f.close()
 
 
 	leftMarkText = "Serial Number: "+snum

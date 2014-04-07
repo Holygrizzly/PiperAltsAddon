@@ -48,6 +48,22 @@ def genKeys():
 	if(coinType == "litecoin"):
 		process = Popen(["./vanitygen-litecoin", "-q", "-L", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
 
+	elif(coinType == "dogecoin"):
+		process = Popen(["./vanitygen-litecoin", "-q", "-X30", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
+
+	elif(coinType == "peercoin"):
+		process = Popen(["./vanitygen-litecoin", "-q", "-X55", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
+
+	elif(coinType == "namecoin"):
+		process = Popen(["./vanitygen-litecoin", "-q", "-X52", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
+
+	elif(coinType == "primecoin"):
+		process = Popen(["./vanitygen-litecoin", "-q", "-X23", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
+
+	elif(coinType == "feathercoin"):
+		process = Popen(["./vanitygen-litecoin", "-q", "-X14", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
+
+
 	else:
 		process = Popen(["./vanitygen", "-q", "-t","1","-s", "/dev/random", addrPrefix], stdout=PIPE)
 
