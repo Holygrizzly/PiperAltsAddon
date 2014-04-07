@@ -25,6 +25,8 @@ PPC NMC FTC DOGE XPM added by pembo210
 
 Final product - https://i.imgur.com/X4PpUS6.jpg
 
-Select coin options on Settings tab.
+Select coin options on Settings tab in the GUI.
 
-Encryption options untested. Please test on your own.
+Donations welcome - 1Pemboia8GbXizfT9y5cX8gLQhDYpqigS3
+
+Encryption options not fully tested. Please double check on your own.
